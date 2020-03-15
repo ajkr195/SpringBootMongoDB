@@ -1,0 +1,77 @@
+.dropdown-menu>a:hover {
+	background-color: #33BEFF;
+	text-decoration: none;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+	/* 	background-color: #33BEFF; */
+	/* 	background-color: #F3F694; */
+	font-weight: bold;
+}
+
+.table_morecondensed>thead>tr>th, .table_morecondensed>tbody>tr>th,
+	.table_morecondensed>tfoot>tr>th, .table_morecondensed>thead>tr>td,
+	.table_morecondensed>tbody>tr>td, .table_morecondensed>tfoot>tr>td {
+	padding: 1px;
+	font-size: auto;
+}
+
+.btn {
+	border-radius: 0;
+}
+
+.nav>li>a {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.btn-space {
+	margin-right: 5px;
+	margin-left: 5px;
+	font-size: 12px
+}
+
+.control-label {
+	padding-top: 6px;
+}
+
+.pull-left {
+	margin-left: -20px; /* Try with different values until you are happy */
+}
+
+.error {
+	color: red;
+}
+
+thead {
+	background-color: lightgray;
+	color: black;
+	line-height: 15px;
+	font-weight: bold;
+}
+
+.field_set {
+	margin-top: 5px;
+	border: 2px;
+	  border-color: darkgray;
+	border-style: solid;
+}
+
+legend {
+	font-size: 14px;
+	font-weight: bold;
+	color: blue;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 25px; */
+	line-height: 20px;
+	background-color: #f5f5f5;
+	text-align: center;
+}

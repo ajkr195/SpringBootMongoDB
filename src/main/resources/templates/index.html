@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Address Book</title>
+<link rel="stylesheet"
+	href="webjars/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+	<nav class="navbar bg-custom navbar-expand-sm bg-dark navbar-dark py-1">
+		<a class="navbar-brand" href="/">MongoDB</a>
+		<button type="button" class="navbar-toggler" data-toggle="collapse"
+			data-target="#nav">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-between" id="nav">
+
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/">Link 1</a></li>
+				<li class="nav-item"><a class="nav-link" href="/">Link 2</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="/" id="navbardrop"
+					data-toggle="dropdown"> Dropdown link </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/">Link 1</a> <a
+							class="dropdown-item" href="/">Link 2</a> <a
+							class="dropdown-item" href="/">Link 3</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div style="text-align: center">
+			<h4>
+				<b>MongoDB File Server</b>
+			</h4>
+		</div>
+			<form method="POST" enctype="multipart/form-data" action="/">
+			<fieldset class="field_set col-md-4">
+				<legend class="w-auto">Upload New File</legend>
+				<div class="row">
+					<input type="file" name="file" path="file" id="file" class="input-lg"
+						required="required" />
+				</div><br>
+				<button class="btn btn-sm btn-success newAddBookBtn btn-space"
+					type="submit">Submit</button><br>
+					
+					</fieldset>
+			</form>
+		<hr/>
+
+		<div class="card-block">
+			<table class="table table-bordered table-hover table_morecondensed" id="myTable">
+				<thead>
+					<tr>
+						<td>File Name</td>
+						<td>File-ID</td>
+						<td>File Size</td>
+						<td>Upload Date</td>
+						<td>Mime-Type</td>
+						<td>MD5</td>
+						<td>Action</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${files.size()} eq 0">
+						<td colspan="3">No Files To Display</td>
+					</tr>
+					<tr th:each="file : ${files}">
+						<td><a th:href="'files/'+${file.id}" th:text="${file.name}" /></td>
+						<td th:text="${file.id}"></td>
+						<td th:text="${file.size}"></td>
+						<td th:text="${file.uploadDate}"></td>
+						<td th:text="${file.contentType}"></td>
+						<td th:text="${file.md5}"></td>
+						<td onclick="deleteImg(this)" th:id="${file.id}"
+							style="text-align: center;"><button
+								class="btn btn-sm btn-danger newAddBookBtn btn-space">Delete</button></td>
+						<!-- <td><a th:href="@{delete/{id}(id=${file.id})}" -->
+						<!-- class="btn-sm btn-danger btn-space delBtn">Delete</a></td> -->
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="webjars/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="webjars/jquery-validation/1.19.0/jquery.validate.min.js"></script>
+	<script type="text/javascript"
+		src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
+	<footer class="footer bg-dark text-white p-0">
+		<div class="container">
+			<!-- 		<span  style="text-align:center;">Spring Boot. What else you are looking for? | <a href="#" -->
+			<span class="text-center">SPRING BOOT ROCKS | <a href="#"
+				data-toggle="modal" style="color: white;"><i
+					class="far fa-copyright"></i>Copyright Notice</a> | <a href="#"
+				data-toggle="modal" data-target="#contactUsModalCenter"
+				style="color: white;"><i class="fas fa-phone"></i> Contact us <i
+					class="fas fa-comment"></i></a> | <a href="#" data-toggle="modal"
+				style="color: white;">Know more about us</a></span>
+		</div>
+	</footer>
+</body>
+</html>
