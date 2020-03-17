@@ -36,22 +36,39 @@
 				<b>MongoDB File Server</b>
 			</h4>
 		</div>
-			<form method="POST" enctype="multipart/form-data" action="/">
-			<fieldset class="field_set col-md-4">
-				<legend class="w-auto">Upload New File</legend>
-				<div class="row">
-					<input type="file" name="file" path="file" id="file" class="input-lg"
-						required="required" />
-				</div><br>
-				<button class="btn btn-sm btn-success newAddBookBtn btn-space"
-					type="submit">Submit</button><br>
-					
+		<div class="row">
+			<div class="col-md-6">
+				<form method="POST" enctype="multipart/form-data" action="/">
+					<fieldset class="field_set">
+						<legend class="w-auto">Upload New File</legend>
+						<!-- 					<div class="row"> -->
+						<input type="file" name="file" path="file" id="file"
+							class="input-lg" required="required" />
+						<!-- 					</div> -->
+						<!-- 					<br> -->
+						<button class="btn btn-sm btn-success newAddBookBtn btn-space"
+							type="submit">Submit</button>
+						<!-- 					<br> -->
 					</fieldset>
-			</form>
-		<hr/>
-
+				</form>
+			</div>
+			<div class="col-md-6">
+				<br>
+				<div th:if="${message}"
+					class="alert alert-info alert-dismissible fade show"
+					role="alert" id="myalert">
+					<p>File upload successful</p>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<hr />
 		<div class="card-block">
-			<table class="table table-bordered table-hover table_morecondensed" id="myTable">
+			<table class="table table-bordered table-hover table_morecondensed"
+				id="myTable">
 				<thead>
 					<tr>
 						<td>File Name</td>
@@ -60,7 +77,9 @@
 						<td>Upload Date</td>
 						<td>Mime-Type</td>
 						<td>MD5</td>
-						<td>Action</td>
+						<td>View</td>
+						<td>Download</td>
+						<td>Delete</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,12 +87,18 @@
 						<td colspan="3">No Files To Display</td>
 					</tr>
 					<tr th:each="file : ${files}">
-						<td><a th:href="'files/'+${file.id}" th:text="${file.name}" /></td>
+						<td th:text="${file.name}" /></td>
 						<td th:text="${file.id}"></td>
 						<td th:text="${file.size}"></td>
 						<td th:text="${file.uploadDate}"></td>
 						<td th:text="${file.contentType}"></td>
 						<td th:text="${file.md5}"></td>
+						<td><a th:href="'view/'+${file.id}" th:target="_blank"
+							class="btn btn-sm btn-primary">View</a></td>
+						<td><a th:href="'files/'+${file.id}" th:target="_blank"
+							class="btn btn-sm btn-success">Download</a></td>
+						<!-- 						<td><a th:href="'delete/'+${file.id}" th:target="_blank" -->
+						<!-- 							class="btn btn-sm btn-primary">Delete</a></td> -->
 						<td onclick="deleteImg(this)" th:id="${file.id}"
 							style="text-align: center;"><button
 								class="btn btn-sm btn-danger newAddBookBtn btn-space">Delete</button></td>
@@ -82,6 +107,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<br> <br> <br>
 
 		</div>
 	</div>
@@ -92,6 +118,11 @@
 	<script type="text/javascript"
 		src="webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+$( document ).ready(function() {
+	setTimeout(function() { $('#myalert').alert('close'); }, 2000);
+});
+</script>
 
 	<footer class="footer bg-dark text-white p-0">
 		<div class="container">

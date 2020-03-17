@@ -5,7 +5,7 @@
      
 	console.log(obj.id);
     $.ajax({
-    	url: "/" + obj.id,
+    	url: "delete/" + obj.id,
         type: 'delete',
         success:function(result){
         	var parentNode = obj.parentNode;

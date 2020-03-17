@@ -6,7 +6,7 @@
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
 	/* 	background-color: #33BEFF; */
 	/* 	background-color: #F3F694; */
-	font-weight: bold;
+/* 	font-weight: bold; */
 }
 
 .table_morecondensed>thead>tr>th, .table_morecondensed>tbody>tr>th,
@@ -17,7 +17,7 @@
 }
 
 .btn {
-	border-radius: 0;
+/* 	border-radius: 0; */
 }
 
 .nav>li>a {
@@ -63,6 +63,13 @@ legend {
 	font-size: 14px;
 	font-weight: bold;
 	color: blue;
+}
+
+.alert {
+  margin-bottom: 1px;
+  height: 35px;
+  line-height:35px;
+  padding:0px;
 }
 
 .footer {

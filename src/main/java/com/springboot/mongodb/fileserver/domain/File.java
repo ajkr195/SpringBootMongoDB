@@ -17,6 +17,11 @@ public class File {
 	private String md5;
 	private Binary content;
 	private String path;
+	
+	private String description;
+	private String docclassname;
+	private String ownername;
+	private String createdby;
 
 	public String getPath() {
 		return path;
@@ -81,8 +86,40 @@ public class File {
 	public void setContent(Binary content) {
 		this.content = content;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
 
-	protected File() {
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDocclassname() {
+		return docclassname;
+	}
+
+	public void setDocclassname(String docclassname) {
+		this.docclassname = docclassname;
+	}
+
+	public String getOwnername() {
+		return ownername;
+	}
+
+	public void setOwnername(String ownername) {
+		this.ownername = ownername;
+	}
+
+	public String getCreatedby() {
+		return createdby;
+	}
+
+	public void setCreatedby(String createdby) {
+		this.createdby = createdby;
+	}
+
+	public File() {
 	}
 
 	public File(String name, String contentType, long size, Binary content) {

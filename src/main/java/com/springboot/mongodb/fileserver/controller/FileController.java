@@ -92,21 +92,41 @@ public class FileController {
 	}
 
 	@PostMapping("/")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+	public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Model model) {
 
 		try {
 			File f = new File(file.getOriginalFilename(), file.getContentType(), file.getSize(),
 					new Binary(file.getBytes()));
 			f.setMd5(MD5Util.getMD5(file.getInputStream()));
+
+//			Path path = Paths.get(file.getName());
+//			long expectedSizeInMB = 16;
+//			long expectedSizeInBytes = 1024 * 1024 * expectedSizeInMB;
+//			long sizeInBytes = -1;
+//			try {
+//			    sizeInBytes = Files.size(path);
+//			    System.out.println(">>>>>>>>>>>>         \n\n" +  sizeInBytes + "\n\n>>>>>>>>>>>>        ");
+//			} catch (IOException e) {
+//			    System.err.println("Cannot get the size - " + e);
+//			}
+
+//			if (sizeInBytes > expectedSizeInBytes) {
+//			    System.out.println("Bigger than " + expectedSizeInMB + " MB. So storing file using GridFS.\"");
+//			    fileService.saveBigFile((MultipartFile) f);
+//			} else {
+//			    System.out.println("Not bigger than " + expectedSizeInMB + " MB. So storing file as BSON.");
+//			    fileService.saveFile(f);
+//			}
+
 			fileService.saveFile(f);
+
 		} catch (IOException | NoSuchAlgorithmException ex) {
 			ex.printStackTrace();
-			redirectAttributes.addFlashAttribute("message", "Your " + file.getOriginalFilename() + " is wrong!");
+			redirectAttributes.addFlashAttribute("message", "Your " + file.getName() + " is wrong!");
 			return "redirect:/";
 		}
 
-		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file.getOriginalFilename() + "!");
+		redirectAttributes.addFlashAttribute("message", "somemessage");
 
 		return "redirect:/";
 	}
@@ -130,11 +150,12 @@ public class FileController {
 
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/delete/{id}")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(@PathVariable String id) {
 
 		try {
+			System.out.println("Deleting File id - " + id);
 			fileService.deleteFile(id);
 			return ResponseEntity.status(HttpStatus.OK).body("DELETE Success!");
 		} catch (Exception e) {
