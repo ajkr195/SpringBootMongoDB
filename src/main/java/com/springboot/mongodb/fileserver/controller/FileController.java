@@ -155,7 +155,7 @@ public class FileController {
 	public ResponseEntity<String> deleteFile(@PathVariable String id) {
 
 		try {
-			System.out.println("Deleting File id - " + id);
+//			System.out.println("Deleting File id - " + id);
 			fileService.deleteFile(id);
 			return ResponseEntity.status(HttpStatus.OK).body("DELETE Success!");
 		} catch (Exception e) {
