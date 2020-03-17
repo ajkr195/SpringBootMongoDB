@@ -39,25 +39,24 @@
 		<div class="row">
 			<div class="col-md-6">
 				<form method="POST" enctype="multipart/form-data" action="/">
-					<fieldset class="field_set">
-						<legend class="w-auto">Upload New File</legend>
+<!-- 					<fieldset class="field_set"> -->
+<!-- 						<legend class="w-auto">Upload New File</legend> -->
 						<!-- 					<div class="row"> -->
-						<input type="file" name="file" path="file" id="file"
+						Upload File: <input type="file" name="file" path="file" id="file"
 							class="input-lg" required="required" />
 						<!-- 					</div> -->
-						<!-- 					<br> -->
+											<br>
 						<button class="btn btn-sm btn-success newAddBookBtn btn-space"
 							type="submit">Submit</button>
 						<!-- 					<br> -->
-					</fieldset>
+<!-- 					</fieldset> -->
 				</form>
 			</div>
 			<div class="col-md-6">
-				<br>
 				<div th:if="${message}"
 					class="alert alert-info alert-dismissible fade show"
 					role="alert" id="myalert">
-					<p>File upload successful</p>
+					<p>Upload successful</p>
 					<button type="button" class="close" data-dismiss="alert"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
